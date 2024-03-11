@@ -1,18 +1,13 @@
-import React from 'react';
-import DataGrid from 'ComponentLibrary/DataGrid';
-import TableMUI from 'ComponentLibrary/Table';
-import TabsMUI from 'ComponentLibrary/Tab';
-import { useAppDispatch, useAppSelector } from '../../../redux';
-import { selectToken, setToken } from '../../../redux/user';
-
-import { TabContent } from 'ComponentLibrary/Interfaces';
-import { Button, Grid } from 'ComponentLibrary/MUI';
+import { DataGrid, Table } from '@workspaceui/componentlibrary/src/components';
+import { TabContent } from '@workspaceui/componentlibrary/src/Interfaces';
+import {
+  Button,
+  Grid,
+} from '@workspaceui/componentlibrary/src/components//MUI';
+import { Tab } from '@workspaceui/componentlibrary/src/components';
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken);
-
-  const tabArray: any[] = [
+  const tabArray: TabContent[] = [
     {
       title: '🎹 Buttons',
       children: (
@@ -21,7 +16,7 @@ const Home = () => {
             <Button
               sx={{ margin: '1rem' }}
               variant="text"
-              onClick={() => dispatch(setToken('1234567890'))}>
+              onClick={() => console.log('click')}>
               Primary
             </Button>
             <Button sx={{ margin: '1rem' }} variant="contained">
@@ -42,7 +37,7 @@ const Home = () => {
               sx={{ margin: '1rem' }}
               variant="contained"
               color="secondary"
-              onClick={() => console.log('token', token)}>
+              onClick={() => console.log('token')}>
               Secondary
             </Button>
             <Button
@@ -71,13 +66,16 @@ const Home = () => {
         </Grid>
       ),
     },
-    { title: '📦 Simple Table', children: <TableMUI /> },
+    {
+      title: '📦 Simple Table',
+      children: <Table />,
+    },
     { title: '⚡️ Data Grid', children: <DataGrid /> },
   ];
 
   return (
     <div className="container">
-      <TabsMUI tabArray={tabArray} />
+      <Tab tabArray={tabArray} />
     </div>
   );
 };
